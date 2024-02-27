@@ -85,6 +85,16 @@ Also added test suite.
     dec:
     b'\xdb\xef\xcf\xdc\xc3\x03\x0e\xfd\x05\x9c\x8b\xba\xa8\x05\x0e\xd7\x9d(1\xb2\x80\x80t\xd05\xed\x8f\xa4\x81\xa7'
 
+#### PyTest results
+    ============================= test session starts ==============================
+    platform linux -- Python 3.10.12, pytest-7.4.3, pluggy-1.0.0
+    rootdir: /home/peterglen/pgpygtk/pyvecc
+    collected 2 items
+
+    test_encdec.py .                                                         [ 50%]
+    test_gen.py .                                                            [100%]
+
+
 ### Revisions:
 
     rev 0.0.2  Tue 27.Feb.2024     Initial

@@ -250,7 +250,7 @@ class Key:
         xx = self.encode(True)
         bb = b"-----BEGIN PRIVATE ECC-----\n"
         bb += base64.b64encode(xx.encode())
-        bb += b"\n-----END PRVATE ECC-----"
+        bb += b"\n-----END PRIVATE ECC-----"
         #print(bb)
         return bb.decode()
 
