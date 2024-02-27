@@ -67,8 +67,6 @@ Also added test suite.
         sss = k.encrypt(org)
         print("encrypt time %.3fms" % ((time.time() - ttt) * 1000) )
 
-        #print(s)
-
         ttt = time.time()
         ddd = k.decrypt(sss)
         print("decypt time %.3fms" % ((time.time() - ttt) * 1000) )
@@ -77,8 +75,7 @@ Also added test suite.
         print("dec:")
         print(ddd2)
 
-
-### Command will print:
+### The above command will print:
 
     key gen time 2.669ms
     org:
@@ -97,6 +94,4 @@ Also added test suite.
   Ported from Python 2 ... Not all is carried over. This port is not 8 bit clean
 but can be used with a help of hexify utils like base64.
 
-
 // EOF
-
