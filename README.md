@@ -7,7 +7,7 @@ Cloned from the ecc project
 Pure Python implementation of an elliptic curve cryptosystem based on FIPS 186-3
 Cloned from the ecc project
 
-This is an adaptation from the orriginal to Python Version 3.
+This is an adaptation from the original to Python Version 3.
 Also added test suite.
 
 ### Timings / Performance:
@@ -87,6 +87,15 @@ Also added test suite.
     decypt time 2.803ms
     dec:
     b'\xdb\xef\xcf\xdc\xc3\x03\x0e\xfd\x05\x9c\x8b\xba\xa8\x05\x0e\xd7\x9d(1\xb2\x80\x80t\xd05\xed\x8f\xa4\x81\xa7'
+
+### Revisions:
+
+    rev 0.0.2  Tue 27.Feb.2024     Initial
+
+## Errata:
+
+     Ported from Python 2 ... Not all is carried over. This port is not 8 bit clean
+   but can be used with a help of hexify utils like base64.
 
 
 // EOF
