@@ -1,4 +1,4 @@
-#pyvecc
+# pyvecc
 
 ## Elliptic curve FIPS 186-3
 
@@ -10,7 +10,7 @@ Cloned from the ecc project
 This is an adaptation from the orriginal to Python Version 3.
 Also added test suite.
 
-##Timings / Performance:
+### Timings / Performance:
 
     Key generation
 
@@ -52,5 +52,5 @@ Also added test suite.
     384 bits     0.00549 seconds  18230.55592/sec
     521 bits     0.01075 seconds  9300.21508/sec
 
-# EOF
+// EOF
 
