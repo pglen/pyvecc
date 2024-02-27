@@ -17,10 +17,11 @@ from curves import get_curve, implemented_keys
 
 def randkey(bits, n):
     '''Generate a random number (mod n) having the specified bit length'''
-    rb = urandom(bits / 8 + 8)  # + 64 bits as recommended in FIPS 186-3
+    rb = urandom(bits // 8 + 8)  # + 64 bits as recommended in FIPS 186-3
     c = 0
     for r in rb:
-        c = (c << 8) | ord(r)
+        #print(r)
+        c = (c << 8) | r #ord(r)
     return (c % (n - 1)) + 1
 
 
@@ -29,13 +30,13 @@ def keypair(bits):
     try:
         bits, cn, n, cp, cq, g = get_curve(bits)
     except KeyError:
-        raise ValueError, "Key size %s not implemented" % bits
+        raise ValueError("Key size %s not implemented" % bits)
     if n > 0:
         d = randkey(bits, n)
         q = mulp(cp, cq, cn, g, d)
         return (bits, q), (bits, d)
     else:
-        raise ValueError, "Key size %s not suitable for signing" % bits
+        raise ValueError("Key size %s not suitable for signing" % bits)
 
 
 def supported_keys():

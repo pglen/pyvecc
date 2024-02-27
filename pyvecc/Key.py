@@ -170,8 +170,13 @@ prime having great security characteristics, 521 bits are preferred
 over a constructed 512 bit field.)
 """
 
+import os, sys
+base = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.join(base,  '.'))
+
 import ecdsa
 import hashlib
+import base64
 
 from encoding import *
 from eccrypt import *
@@ -217,7 +222,49 @@ class Key:
         if kid == k.keyid():
             return k
         else:
-            raise ValueError, "Invalid Key ID"
+            raise ValueError("Invalid Key ID")
+
+    # --- KEY MANAGEMENT ------------------------------------------------------
+
+    def export_pub(self):
+        xx = self.encode()
+        bb = b"-----BEGIN PUBLIC ECC-----\n"
+        bb += base64.b64encode(xx.encode())
+        bb += b"\n-----END PUBLIC ECC-----"
+        #print(bb)
+        return bb.decode()
+
+    @staticmethod
+    def import_pub(sss):
+        idx = sss.find("-\n")
+        #print(idx)
+        idx2 = sss.find("\n-")
+        #print(idx2)
+        ssss = sss[idx:idx2]
+        #print(ssss)
+        dddd = base64.b64decode(ssss.encode())
+        #print(dddd)
+        return Key.decode(dddd.decode())
+
+    def export_priv(self):
+        xx = self.encode(True)
+        bb = b"-----BEGIN PRIVATE ECC-----\n"
+        bb += base64.b64encode(xx.encode())
+        bb += b"\n-----END PRVATE ECC-----"
+        #print(bb)
+        return bb.decode()
+
+    @staticmethod
+    def import_priv(sss):
+        idx = sss.find("-\n")
+        #print(idx)
+        idx2 = sss.find("\n-")
+        #print(idx2)
+        ssss = sss[idx:idx2]
+        #print(ssss)
+        dddd = base64.b64decode(ssss.encode())
+        #print(dddd)
+        return Key.decode(dddd.decode())
 
     # --- IDENTIFICATION AND VALIDATION ---------------------------------------
 
@@ -238,14 +285,24 @@ class Key:
 
     def fingerprint(self, as_hex=True, hashfunc='sha1'):
         '''Get the public key fingerprint'''
-        if hashfunc in self._fingerprint:
-            return self._fingerprint[hashfunc] if not as_hex else \
-                   self._fingerprint[hashfunc].encode('hex')
+        #if 0: #hashfunc in self._fingerprint:
+        #    return self._fingerprint[hashfunc] if not as_hex else \
+        #           self._fingerprint[hashfunc].encode('hex')
+        #else:
+
+        ddd = enc_point(self._pub[1])
+        if type(ddd) == type(""):
+            h = hashlib.new(hashfunc, ddd.encode())
         else:
-            h = hashlib.new(hashfunc, enc_point(self._pub[1]))
-            d = h.digest()
-            self._fingerprint[hashfunc] = d
-            return d.encode("hex") if as_hex else d
+            h = hashlib.new(hashfunc, ddd)
+        d = h.digest()
+        self._fingerprint[hashfunc] = d
+
+        #if type(d) == type(""):
+        #    return d.decode if as_hex else d
+        #else:
+
+        return d #.encode("hex") if as_hex else d
 
     def keyid(self):
         '''Get a short, unique identifier'''
@@ -262,7 +319,7 @@ class Key:
             s = ecdsa.sign(h, self._priv)
             return enc_point(s)
         else:
-            raise AttributeError, 'Private key needed for signing.'
+            raise AttributeError('Private key needed for signing.')
 
     def verify(self, data, sig, hashfunc='sha256'):
         '''Verify the signature of data using the specified hash function'''
@@ -297,7 +354,7 @@ class Key:
         if source.verify(text, sgn):
             return text
         else:
-            raise SecurityViolationException, 'Invalid Signature'
+            raise SecurityViolationException('Invalid Signature')
 
 
 if __name__ == '__main__':

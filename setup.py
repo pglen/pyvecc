@@ -1,4 +1,4 @@
-#!/usr/bin/python2.4
+#!/usr/bin/python
 #
 # Copyright 2007 The Python-Twitter Developers
 #
@@ -17,23 +17,29 @@
 # copied from https://github.com/bear/python-twitter/blob/master/setup.py
 #
 
-'''The setup and build script for the python-twitter library.'''
+'''The setup and build script for the pyvecc library.'''
 
-__author__ = 'niccokunzmann@aol.com'
-__version__ = '0.0.1'
-
+__author__ = 'peterglen99@gmail.com'
+__version__ = '0.0.2'
 
 # The base package metadata to be used by both distutils and setuptools
 METADATA = dict(
-    name = "ecc",
+    name = "pyvecc",
     version = __version__,
-    packages = ['ecc'],
-    author='Toni Mattis',
-    author_email='solaris@live.de',
+    packages = ['pyvecc'],
+    author=__author__,
+    author_email='peterglen99@gmail.com',
     description='Pure Python implementation of an elliptic curve cryptosystem based on FIPS 186-3',
     license='MIT',
-    url='https://github.com/niccokunzmann/ecc',
-    keywords='elliptic curve cryptosystem rabbit cipher',
+    scripts = ["testecc.py", "testecckey.py", "testeccperf.py"],
+    entry_points={
+        'console_scripts': [ "testecc=testecc:mainfunc",
+                                "testecckey=testecckey:mainfunc",
+                                  "testeccperf=testeccperf:mainfunc",
+                           ]
+        },
+    url='https://github.com/pglen/pyvecc',
+    keywords='simple elliptic curve cryptosystem ',
 )
 
 # Extra package metadata to be used only if setuptools is installed
@@ -46,12 +52,11 @@ SETUPTOOLS_METADATA = dict(
         'License :: OSI Approved :: MIT License',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Communications',
-        'Topic :: Security :: Cryptography', 
+        'Topic :: Security :: Cryptography',
         'Topic :: Internet',
     ],
 ##    test_suite = 'distacc_test',
 )
-
 
 def Read(file):
     return open(file).read()
@@ -72,6 +77,7 @@ def Main():
         import distutils.core
         distutils.core.setup(**METADATA)
 
-
 if __name__ == '__main__':
     Main()
+
+# EOF
