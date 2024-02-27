@@ -13,7 +13,7 @@ sys.path.append(os.path.join(base,  'pyvecc'))
 from pyvecc.Key import Key
 
 #org = b'random test string ' * 10
-org2 = Random.new().read(80)
+org2 = Random.new().read(30)
 org = base64.b64encode(org2)
 
 def mainfunc():
