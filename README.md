@@ -78,7 +78,7 @@ Also added test suite.
         print(ddd2)
 
 
-### Will print
+### Command will print:
 
     key gen time 2.669ms
     org:
@@ -94,8 +94,8 @@ Also added test suite.
 
 ## Errata:
 
-     Ported from Python 2 ... Not all is carried over. This port is not 8 bit clean
-   but can be used with a help of hexify utils like base64.
+  Ported from Python 2 ... Not all is carried over. This port is not 8 bit clean
+but can be used with a help of hexify utils like base64.
 
 
 // EOF
