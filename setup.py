@@ -31,6 +31,7 @@ METADATA = dict(
     author_email='peterglen99@gmail.com',
     description='Pure Python implementation of an elliptic curve cryptosystem based on FIPS 186-3',
     license='MIT',
+    long_description_content_type="text/markdown",
     scripts = ["testecc.py", "testecckey.py", "testeccperf.py"],
     entry_points={
         'console_scripts': [ "testecc=testecc:mainfunc",
