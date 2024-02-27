@@ -52,5 +52,30 @@ Also added test suite.
     384 bits     0.00549 seconds  18230.55592/sec
     521 bits     0.01075 seconds  9300.21508/sec
 
+### Getting Started
+
+    org2 = Random.new().read(256)
+    org = base64.b64encode(org2)
+
+        ttt = time.time()
+        k = Key.generate(256)
+        print("key gen time %.3fms" % ((time.time() - ttt) * 1000) )
+
+        print("org:")
+        print(org2)
+        ttt = time.time()
+        sss = k.encrypt(org)
+        print("encrypt time %.3fms" % ((time.time() - ttt) * 1000) )
+
+        #print(s)
+
+        ttt = time.time()
+        ddd = k.decrypt(sss)
+        print("decypt time %.3fms" % ((time.time() - ttt) * 1000) )
+
+        ddd2 = base64.b64decode(ddd)
+        print("dec:")
+        print(ddd2)
+
 // EOF
 
